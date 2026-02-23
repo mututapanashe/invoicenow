@@ -10,10 +10,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<ButtonVariant, string> = {
   default:
-    'bg-gray-900 text-white hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed',
+    'bg-gradient-to-r from-amber-300 via-orange-300 to-orange-400 text-neutral-950 shadow-lg shadow-orange-900/25 hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60',
   outline:
-    'border border-gray-300 bg-white text-gray-900 hover:bg-gray-50 disabled:cursor-not-allowed',
-  ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed',
+    'border border-amber-300/45 bg-neutral-900/70 text-amber-100 hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60',
+  ghost:
+    'bg-transparent text-amber-100 hover:bg-amber-400/10 hover:text-amber-50 disabled:cursor-not-allowed disabled:opacity-60',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -23,7 +24,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={cn(
-          'inline-flex h-10 items-center justify-center rounded-md px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2',
+          'inline-flex h-10 items-center justify-center rounded-md px-4 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
           variantClasses[variant],
           className
         )}

@@ -21,10 +21,10 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   if (!hasSupabaseEnv()) {
     return (
       <div className="mx-auto min-h-screen max-w-3xl px-6 py-10">
-        <h1 className="text-2xl font-semibold text-gray-900">Dashboard is unavailable</h1>
-        <p className="mt-3 text-gray-600">Authentication is currently unavailable.</p>
+        <h1 className="text-2xl font-semibold text-amber-50">Dashboard is unavailable</h1>
+        <p className="mt-3 text-amber-100/80">Authentication is currently unavailable.</p>
         {process.env.NODE_ENV !== 'production' ? (
-          <p className="mt-3 rounded-md bg-gray-100 px-3 py-2 text-xs text-gray-600">
+          <p className="mt-3 rounded-md border border-amber-300/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100/80">
             Developer note: set `NEXT_PUBLIC_SUPABASE_URL` and
             `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
           </p>
@@ -32,7 +32,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
         <div className="mt-6">
           <Link
             href="/login"
-            className="inline-flex rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            className="inline-flex rounded-md bg-gradient-to-r from-amber-300 to-orange-300 px-4 py-2 text-sm font-semibold text-black hover:brightness-105"
           >
             Go to login
           </Link>
@@ -59,7 +59,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <div className="flex min-h-screen">
         <Sidebar links={dashboardLinks} className="hidden md:block" />
         <div className="flex min-w-0 flex-1 flex-col">
@@ -74,7 +74,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
               </form>
             }
           />
-          <main className="flex-1 p-6">{children}</main>
+          <main className="flex-1 p-5 md:p-6">{children}</main>
         </div>
       </div>
     </div>

@@ -9,9 +9,9 @@ type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
 }
 
 const badgeVariants: Record<BadgeVariant, string> = {
-  default: 'bg-gray-100 text-gray-700',
-  success: 'bg-green-100 text-green-700',
-  warning: 'bg-yellow-100 text-yellow-700',
+  default: 'bg-amber-200/15 text-amber-100 border border-amber-300/40',
+  success: 'bg-emerald-300/15 text-emerald-100 border border-emerald-300/50',
+  warning: 'bg-orange-300/15 text-orange-100 border border-orange-300/50',
 }
 
 export function Badge({ className, variant = 'default', ...props }: BadgeProps) {

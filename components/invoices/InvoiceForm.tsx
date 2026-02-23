@@ -8,18 +8,27 @@ import { Select } from '@/components/ui/Select'
 type InvoiceFormProps = {
   defaultValues?: Partial<Invoice>
   mode?: 'create' | 'edit'
+  action: (formData: FormData) => void | Promise<void>
+  error?: string
+  message?: string
 }
 
-export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps) {
+export function InvoiceForm({
+  defaultValues,
+  mode = 'create',
+  action,
+  error,
+  message,
+}: InvoiceFormProps) {
   return (
     <Card>
       <CardHeader>
         <CardTitle>{mode === 'create' ? 'Create Invoice' : 'Edit Invoice'}</CardTitle>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4">
+        <form action={action} className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="customerName" className="text-sm font-medium text-gray-700">
+            <label htmlFor="customerName" className="text-sm font-medium text-amber-100">
               Customer name
             </label>
             <Input
@@ -31,7 +40,7 @@ export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="customerEmail" className="text-sm font-medium text-gray-700">
+            <label htmlFor="customerEmail" className="text-sm font-medium text-amber-100">
               Customer email
             </label>
             <Input
@@ -45,13 +54,14 @@ export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <label htmlFor="amount" className="text-sm font-medium text-gray-700">
+              <label htmlFor="amount" className="text-sm font-medium text-amber-100">
                 Amount
               </label>
               <Input
                 id="amount"
                 name="amount"
                 type="number"
+                step="0.01"
                 min="1"
                 defaultValue={defaultValues?.amount}
                 placeholder="1200"
@@ -59,7 +69,7 @@ export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="dueDate" className="text-sm font-medium text-gray-700">
+              <label htmlFor="dueDate" className="text-sm font-medium text-amber-100">
                 Due date
               </label>
               <Input
@@ -72,7 +82,7 @@ export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps
             </div>
           </div>
           <div className="space-y-2">
-            <label htmlFor="status" className="text-sm font-medium text-gray-700">
+            <label htmlFor="status" className="text-sm font-medium text-amber-100">
               Status
             </label>
             <Select id="status" name="status" defaultValue={defaultValues?.status ?? 'draft'}>
@@ -81,6 +91,18 @@ export function InvoiceForm({ defaultValues, mode = 'create' }: InvoiceFormProps
               <option value="paid">Paid</option>
             </Select>
           </div>
+
+          {message ? (
+            <p className="rounded-md border border-emerald-400/40 bg-emerald-500/15 px-3 py-2 text-sm text-emerald-100">
+              {message}
+            </p>
+          ) : null}
+          {error ? (
+            <p className="rounded-md border border-red-400/50 bg-red-500/10 px-3 py-2 text-sm text-red-100">
+              {error}
+            </p>
+          ) : null}
+
           <Button type="submit">{mode === 'create' ? 'Save invoice' : 'Update invoice'}</Button>
         </form>
       </CardContent>

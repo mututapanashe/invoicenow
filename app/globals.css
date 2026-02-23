@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0b0907;
+  --bg-secondary: #17120c;
+  --panel: #1e1710;
+  --panel-soft: #241d14;
+  --text-primary: #fff6e8;
+  --text-secondary: #d7c7aa;
+  --accent-gold: #f7c557;
+  --accent-orange: #f5852d;
+  --border-strong: #62461f;
+  --border-soft: #3f2b12;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border-soft);
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(247, 197, 87, 0.2), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(245, 133, 45, 0.15), transparent 32%),
+    linear-gradient(180deg, #0f0c08 0%, #0a0806 60%, #070604 100%);
+  color: var(--text-primary);
+  font-family: var(--font-body), sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.02em;
 }

@@ -7,4 +7,16 @@ export type Invoice = {
   amount: number
   dueDate: string
   status: InvoiceStatus
+  createdAt?: string
+}
+
+export type AccountSettings = {
+  companyName: string
+  companyEmail: string
+  companyPhone: string
+  companyAddress: string
+  companyWebsite: string
+  defaultCurrency: string
+  paymentTermsDays: number
+  invoicePrefix: string
 }

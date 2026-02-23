@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { formatMoney } from '@/lib/account-settings'
 import { Invoice } from '@/types'
 
 import { Badge } from '@/components/ui/Badge'
@@ -7,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 type InvoiceTableProps = {
   invoices: Invoice[]
+  currencyCode: string
 }
 
 const statusVariant = {
@@ -15,9 +17,16 @@ const statusVariant = {
   paid: 'success',
 } as const
 
-export function InvoiceTable({ invoices }: InvoiceTableProps) {
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date(date))
+
+export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-amber-300/20 bg-neutral-950/90 shadow-xl shadow-black/30">
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -33,27 +42,35 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
           <TableBody>
             {invoices.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-gray-500">
+                <TableCell colSpan={6} className="text-center text-amber-100/70">
                   No invoices yet.
                 </TableCell>
               </TableRow>
             ) : (
               invoices.map((invoice) => (
                 <TableRow key={invoice.id}>
-                  <TableCell className="font-medium text-gray-900">{invoice.customerName}</TableCell>
+                  <TableCell className="font-medium text-amber-50">{invoice.customerName}</TableCell>
                   <TableCell>{invoice.customerEmail}</TableCell>
-                  <TableCell>${invoice.amount.toLocaleString()}</TableCell>
-                  <TableCell>{invoice.dueDate}</TableCell>
+                  <TableCell>{formatMoney(invoice.amount, currencyCode)}</TableCell>
+                  <TableCell>{formatDate(invoice.dueDate)}</TableCell>
                   <TableCell>
                     <Badge variant={statusVariant[invoice.status]}>{invoice.status}</Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Link
-                      href={`/invoices/${invoice.id}/edit`}
-                      className="text-sm font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      Edit
-                    </Link>
+                    <div className="inline-flex items-center gap-3">
+                      <Link
+                        href={`/invoices/${invoice.id}/edit`}
+                        className="text-sm font-semibold text-amber-300 hover:text-amber-200"
+                      >
+                        Edit
+                      </Link>
+                      <Link
+                        href={`/api/invoices/${invoice.id}/pdf`}
+                        className="text-sm font-semibold text-orange-300 hover:text-orange-200"
+                      >
+                        PDF
+                      </Link>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
