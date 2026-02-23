@@ -9,11 +9,11 @@ import { invoiceSchema } from '@/lib/validations/invoice'
 const encodeMessage = (message: string) => encodeURIComponent(message)
 
 const getInvoicePayload = (formData: FormData) => ({
-  customerName: formData.get('customerName'),
-  customerEmail: formData.get('customerEmail'),
-  amount: formData.get('amount'),
-  dueDate: formData.get('dueDate'),
-  status: formData.get('status'),
+  customerName: String(formData.get('customerName') ?? ''),
+  customerEmail: String(formData.get('customerEmail') ?? ''),
+  amount: String(formData.get('amount') ?? ''),
+  dueDate: String(formData.get('dueDate') ?? ''),
+  status: String(formData.get('status') ?? ''),
 })
 
 const ensureAuthenticatedUser = async () => {
@@ -42,7 +42,7 @@ export async function createInvoiceAction(formData: FormData) {
 
   const auth = await ensureAuthenticatedUser()
   if ('error' in auth) {
-    redirect(`/create-invoice?error=${encodeMessage(auth.error)}`)
+    redirect(`/create-invoice?error=${encodeMessage(auth.error ?? 'Authentication failed.')}`)
   }
 
   const { error } = await auth.supabase.from('invoices').insert({
@@ -76,7 +76,9 @@ export async function updateInvoiceAction(invoiceId: string, formData: FormData)
 
   const auth = await ensureAuthenticatedUser()
   if ('error' in auth) {
-    redirect(`/invoices/${invoiceId}/edit?error=${encodeMessage(auth.error)}`)
+    redirect(
+      `/invoices/${invoiceId}/edit?error=${encodeMessage(auth.error ?? 'Authentication failed.')}`
+    )
   }
 
   const { error } = await auth.supabase

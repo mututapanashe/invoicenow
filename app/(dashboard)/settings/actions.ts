@@ -10,14 +10,14 @@ const encodeMessage = (message: string) => encodeURIComponent(message)
 
 export async function saveSettingsAction(formData: FormData) {
   const parsed = settingsSchema.safeParse({
-    companyName: formData.get('companyName'),
-    companyEmail: formData.get('companyEmail'),
-    companyPhone: formData.get('companyPhone'),
-    companyAddress: formData.get('companyAddress'),
-    companyWebsite: formData.get('companyWebsite'),
-    defaultCurrency: formData.get('defaultCurrency'),
-    paymentTermsDays: formData.get('paymentTermsDays'),
-    invoicePrefix: formData.get('invoicePrefix'),
+    companyName: String(formData.get('companyName') ?? ''),
+    companyEmail: String(formData.get('companyEmail') ?? ''),
+    companyPhone: String(formData.get('companyPhone') ?? ''),
+    companyAddress: String(formData.get('companyAddress') ?? ''),
+    companyWebsite: String(formData.get('companyWebsite') ?? ''),
+    defaultCurrency: String(formData.get('defaultCurrency') ?? ''),
+    paymentTermsDays: String(formData.get('paymentTermsDays') ?? ''),
+    invoicePrefix: String(formData.get('invoicePrefix') ?? ''),
   })
 
   if (!parsed.success) {

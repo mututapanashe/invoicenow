@@ -6,8 +6,10 @@ type InvoicePdfPayload = {
   settings: AccountSettings
 }
 
+const toAscii = (value: string) => value.replace(/[^\x20-\x7E]/g, '?')
+
 const escapePdfText = (value: string) =>
-  value.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+  toAscii(value).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)')
 
 const toPdfDate = (value: string) => {
   const parsed = new Date(value)
