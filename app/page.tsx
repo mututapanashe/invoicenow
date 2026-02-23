@@ -5,8 +5,9 @@ import { createClient, hasSupabaseEnv } from '@/lib/supabase/server'
 
 export default async function HomePage() {
   let userEmail: string | null = null
+  const supabaseConfigured = hasSupabaseEnv()
 
-  if (hasSupabaseEnv()) {
+  if (supabaseConfigured) {
     try {
       const supabase = await createClient()
       const {
@@ -27,7 +28,7 @@ export default async function HomePage() {
         <CardContent className="space-y-4">
           <p className="text-gray-600">Invoice management starter with Supabase authentication.</p>
 
-          {hasSupabaseEnv() ? (
+          {supabaseConfigured ? (
             userEmail ? (
               <p className="rounded-md bg-green-50 px-3 py-2 text-sm text-green-700">
                 Logged in as {userEmail}
@@ -38,10 +39,17 @@ export default async function HomePage() {
               </p>
             )
           ) : (
-            <p className="rounded-md bg-yellow-50 px-3 py-2 text-sm text-yellow-800">
-              Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`
-              before using auth.
-            </p>
+            <>
+              <p className="rounded-md bg-yellow-50 px-3 py-2 text-sm text-yellow-800">
+                Authentication is temporarily unavailable. Please try again shortly.
+              </p>
+              {process.env.NODE_ENV !== 'production' ? (
+                <p className="rounded-md bg-gray-100 px-3 py-2 text-xs text-gray-600">
+                  Developer note: set `NEXT_PUBLIC_SUPABASE_URL` and
+                  `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
+                </p>
+              ) : null}
+            </>
           )}
 
           <div className="flex flex-wrap gap-3">
@@ -69,4 +77,3 @@ export default async function HomePage() {
     </div>
   )
 }
-

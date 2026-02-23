@@ -21,11 +21,14 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   if (!hasSupabaseEnv()) {
     return (
       <div className="mx-auto min-h-screen max-w-3xl px-6 py-10">
-        <h1 className="text-2xl font-semibold text-gray-900">Supabase is not configured</h1>
-        <p className="mt-3 text-gray-600">
-          Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local` to
-          enable protected dashboard routes.
-        </p>
+        <h1 className="text-2xl font-semibold text-gray-900">Dashboard is unavailable</h1>
+        <p className="mt-3 text-gray-600">Authentication is currently unavailable.</p>
+        {process.env.NODE_ENV !== 'production' ? (
+          <p className="mt-3 rounded-md bg-gray-100 px-3 py-2 text-xs text-gray-600">
+            Developer note: set `NEXT_PUBLIC_SUPABASE_URL` and
+            `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
+          </p>
+        ) : null}
         <div className="mt-6">
           <Link
             href="/login"

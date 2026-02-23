@@ -26,7 +26,7 @@ export async function registerAction(formData: FormData) {
 
   if (!hasSupabaseEnv()) {
     redirect(
-      `/register?error=${encodeMessage('Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local.')}`
+      `/register?error=${encodeMessage('Authentication is temporarily unavailable. Please try again shortly.')}`
     )
   }
 

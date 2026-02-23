@@ -20,7 +20,7 @@ export async function loginAction(formData: FormData) {
 
   if (!hasSupabaseEnv()) {
     redirect(
-      `/login?error=${encodeMessage('Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local.')}&next=${encodeURIComponent(next)}`
+      `/login?error=${encodeMessage('Authentication is temporarily unavailable. Please try again shortly.')}&next=${encodeURIComponent(next)}`
     )
   }
 
