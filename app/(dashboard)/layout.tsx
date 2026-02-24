@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import { Button } from '@/components/ui/Buttons'
+import { MobileNav } from '@/components/ui/MobileNav'
 import { Navbar } from '@/components/ui/Navbar'
 import { Sidebar } from '@/components/ui/Sidebar'
 import { createClient, hasSupabaseEnv } from '@/lib/supabase/server'
@@ -21,18 +22,12 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   if (!hasSupabaseEnv()) {
     return (
       <div className="mx-auto min-h-screen max-w-3xl px-6 py-10">
-        <h1 className="text-2xl font-semibold text-amber-50">Dashboard is unavailable</h1>
-        <p className="mt-3 text-amber-100/80">Authentication is currently unavailable.</p>
-        {process.env.NODE_ENV !== 'production' ? (
-          <p className="mt-3 rounded-md border border-amber-300/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100/80">
-            Developer note: set `NEXT_PUBLIC_SUPABASE_URL` and
-            `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
-          </p>
-        ) : null}
+        <h1 className="text-2xl font-semibold text-slate-900">Dashboard is unavailable</h1>
+        <p className="mt-3 text-slate-600">Authentication is currently unavailable.</p>
         <div className="mt-6">
           <Link
             href="/login"
-            className="inline-flex rounded-md bg-gradient-to-r from-amber-300 to-orange-300 px-4 py-2 text-sm font-semibold text-black hover:brightness-105"
+            className="inline-flex rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:from-blue-500 hover:to-cyan-400"
           >
             Go to login
           </Link>
@@ -59,7 +54,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-transparent">
       <div className="flex min-h-screen">
         <Sidebar links={dashboardLinks} className="hidden md:block" />
         <div className="flex min-w-0 flex-1 flex-col">
@@ -74,7 +69,8 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
               </form>
             }
           />
-          <main className="flex-1 p-5 md:p-6">{children}</main>
+          <MobileNav links={dashboardLinks} className="md:hidden" />
+          <main className="flex-1 p-4 sm:p-5 md:p-6">{children}</main>
         </div>
       </div>
     </div>

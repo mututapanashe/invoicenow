@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Buttons'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Input } from '@/components/ui/Input'
 import {
   DEFAULT_ACCOUNT_SETTINGS,
   mapAccountSettingsRow,
@@ -49,15 +50,15 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-amber-50">Settings</h1>
+      <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Settings</h1>
 
       {message ? (
-        <p className="rounded-lg border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">
+        <p className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
           {message}
         </p>
       ) : null}
       {pageError ? (
-        <p className="rounded-lg border border-red-400/50 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {pageError}
         </p>
       ) : null}
@@ -70,26 +71,24 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
           <form action={saveSettingsAction} className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <label htmlFor="companyName" className="text-sm font-medium text-amber-100">
+                <label htmlFor="companyName" className="text-sm font-medium text-slate-700">
                   Company name
                 </label>
-                <input
+                <Input
                   id="companyName"
                   name="companyName"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
                   defaultValue={settings.companyName}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="companyEmail" className="text-sm font-medium text-amber-100">
+                <label htmlFor="companyEmail" className="text-sm font-medium text-slate-700">
                   Company email
                 </label>
-                <input
+                <Input
                   id="companyEmail"
                   name="companyEmail"
                   type="email"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
                   defaultValue={settings.companyEmail}
                   placeholder="billing@company.com"
                 />
@@ -98,24 +97,22 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <label htmlFor="companyPhone" className="text-sm font-medium text-amber-100">
+                <label htmlFor="companyPhone" className="text-sm font-medium text-slate-700">
                   Company phone
                 </label>
-                <input
+                <Input
                   id="companyPhone"
                   name="companyPhone"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
                   defaultValue={settings.companyPhone}
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="companyWebsite" className="text-sm font-medium text-amber-100">
+                <label htmlFor="companyWebsite" className="text-sm font-medium text-slate-700">
                   Company website
                 </label>
-                <input
+                <Input
                   id="companyWebsite"
                   name="companyWebsite"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
                   defaultValue={settings.companyWebsite}
                   placeholder="https://example.com"
                 />
@@ -123,41 +120,40 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="companyAddress" className="text-sm font-medium text-amber-100">
+              <label htmlFor="companyAddress" className="text-sm font-medium text-slate-700">
                 Company address
               </label>
               <textarea
                 id="companyAddress"
                 name="companyAddress"
                 rows={3}
-                className="w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/35"
                 defaultValue={settings.companyAddress}
               />
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
               <div className="space-y-2">
-                <label htmlFor="defaultCurrency" className="text-sm font-medium text-amber-100">
+                <label htmlFor="defaultCurrency" className="text-sm font-medium text-slate-700">
                   Default currency
                 </label>
-                <input
+                <Input
                   id="defaultCurrency"
                   name="defaultCurrency"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm uppercase text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
+                  className="uppercase"
                   defaultValue={settings.defaultCurrency}
                   maxLength={3}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="paymentTermsDays" className="text-sm font-medium text-amber-100">
+                <label htmlFor="paymentTermsDays" className="text-sm font-medium text-slate-700">
                   Payment terms (days)
                 </label>
-                <input
+                <Input
                   id="paymentTermsDays"
                   name="paymentTermsDays"
                   type="number"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
                   defaultValue={settings.paymentTermsDays}
                   min={1}
                   max={180}
@@ -165,13 +161,13 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="invoicePrefix" className="text-sm font-medium text-amber-100">
+                <label htmlFor="invoicePrefix" className="text-sm font-medium text-slate-700">
                   Invoice prefix
                 </label>
-                <input
+                <Input
                   id="invoicePrefix"
                   name="invoicePrefix"
-                  className="h-10 w-full rounded-md border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm uppercase text-amber-50 placeholder:text-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50"
+                  className="uppercase"
                   defaultValue={settings.invoicePrefix}
                   maxLength={8}
                   required

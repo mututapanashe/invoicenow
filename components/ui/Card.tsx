@@ -6,7 +6,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        'rounded-xl border border-amber-300/25 bg-gradient-to-br from-neutral-950/90 to-neutral-900/80 shadow-2xl shadow-black/35 backdrop-blur-sm',
+        'rounded-2xl border border-slate-200 bg-white/95 shadow-sm backdrop-blur-sm',
         className
       )}
       {...props}
@@ -22,7 +22,7 @@ export function CardHeader({
 }
 
 export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn('text-lg font-semibold text-amber-50', className)} {...props} />
+  return <h3 className={cn('text-lg font-semibold text-slate-900', className)} {...props} />
 }
 
 export function CardContent({

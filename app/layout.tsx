@@ -1,16 +1,10 @@
 import type { Metadata } from 'next'
-import { Cinzel, Manrope, Space_Mono } from 'next/font/google'
+import { Poppins, Space_Mono } from 'next/font/google'
 
 import './globals.css'
 
-const displayFont = Cinzel({
-  variable: '--font-display',
-  subsets: ['latin'],
-  weight: ['500', '700'],
-})
-
-const bodyFont = Manrope({
-  variable: '--font-body',
+const sansFont = Poppins({
+  variable: '--font-poppins',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
 })
@@ -23,7 +17,7 @@ const monoFont = Space_Mono({
 
 export const metadata: Metadata = {
   title: 'Panatech Invoice',
-  description: 'Golden invoicing SaaS dashboard with settings, persistence, and PDF exports.',
+  description: 'Modern invoicing SaaS dashboard with secure auth, analytics, and PDF exports.',
 }
 
 type RootLayoutProps = Readonly<{
@@ -33,7 +27,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}>
+      <body className={`${sansFont.variable} ${monoFont.variable} antialiased`}>
         {children}
       </body>
     </html>

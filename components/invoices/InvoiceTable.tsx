@@ -24,59 +24,120 @@ const formatDate = (date: string) =>
     year: 'numeric',
   }).format(new Date(date))
 
+const isOverdue = (invoice: Invoice) =>
+  invoice.status !== 'paid' && new Date(invoice.dueDate).getTime() < new Date().setHours(0, 0, 0, 0)
+
 export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
   return (
-    <div className="overflow-hidden rounded-xl border border-amber-300/20 bg-neutral-950/90 shadow-xl shadow-black/30">
-      <div className="overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Customer</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Due date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.length === 0 ? (
+    <div className="space-y-3">
+      <div className="grid gap-3 md:hidden">
+        {invoices.length === 0 ? (
+          <p className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-500">
+            No invoices yet.
+          </p>
+        ) : (
+          invoices.map((invoice) => {
+            const overdue = isOverdue(invoice)
+            return (
+              <div key={invoice.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold text-slate-900">{invoice.customerName}</p>
+                    <p className="truncate text-sm text-slate-500">{invoice.customerEmail}</p>
+                  </div>
+                  <Badge
+                    variant={overdue ? 'warning' : statusVariant[invoice.status]}
+                    className={overdue ? 'border-red-200 bg-red-50 text-red-700' : ''}
+                  >
+                    {overdue ? 'overdue' : invoice.status}
+                  </Badge>
+                </div>
+                <div className="mt-3 flex items-end justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-slate-500">Due</p>
+                    <p className="text-sm font-medium text-slate-700">{formatDate(invoice.dueDate)}</p>
+                  </div>
+                  <p className="text-lg font-semibold text-slate-900">
+                    {formatMoney(invoice.amount, currencyCode)}
+                  </p>
+                </div>
+                <div className="mt-4 flex items-center gap-4">
+                  <Link href={`/invoices/${invoice.id}/edit`} className="text-sm font-semibold text-blue-700">
+                    Edit
+                  </Link>
+                  <Link
+                    href={`/api/invoices/${invoice.id}/pdf`}
+                    className="text-sm font-semibold text-cyan-700"
+                  >
+                    PDF
+                  </Link>
+                </div>
+              </div>
+            )
+          })
+        )}
+      </div>
+
+      <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm md:block">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-amber-100/70">
-                  No invoices yet.
-                </TableCell>
+                <TableHead>Customer</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Due date</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
-            ) : (
-              invoices.map((invoice) => (
-                <TableRow key={invoice.id}>
-                  <TableCell className="font-medium text-amber-50">{invoice.customerName}</TableCell>
-                  <TableCell>{invoice.customerEmail}</TableCell>
-                  <TableCell>{formatMoney(invoice.amount, currencyCode)}</TableCell>
-                  <TableCell>{formatDate(invoice.dueDate)}</TableCell>
-                  <TableCell>
-                    <Badge variant={statusVariant[invoice.status]}>{invoice.status}</Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="inline-flex items-center gap-3">
-                      <Link
-                        href={`/invoices/${invoice.id}/edit`}
-                        className="text-sm font-semibold text-amber-300 hover:text-amber-200"
-                      >
-                        Edit
-                      </Link>
-                      <Link
-                        href={`/api/invoices/${invoice.id}/pdf`}
-                        className="text-sm font-semibold text-orange-300 hover:text-orange-200"
-                      >
-                        PDF
-                      </Link>
-                    </div>
+            </TableHeader>
+            <TableBody>
+              {invoices.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center text-slate-500">
+                    No invoices yet.
                   </TableCell>
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
+              ) : (
+                invoices.map((invoice) => {
+                  const overdue = isOverdue(invoice)
+                  return (
+                    <TableRow key={invoice.id}>
+                      <TableCell className="font-medium text-slate-900">{invoice.customerName}</TableCell>
+                      <TableCell>{invoice.customerEmail}</TableCell>
+                      <TableCell>{formatMoney(invoice.amount, currencyCode)}</TableCell>
+                      <TableCell>{formatDate(invoice.dueDate)}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={overdue ? 'warning' : statusVariant[invoice.status]}
+                          className={overdue ? 'border-red-200 bg-red-50 text-red-700' : ''}
+                        >
+                          {overdue ? 'overdue' : invoice.status}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="inline-flex items-center gap-3">
+                          <Link
+                            href={`/invoices/${invoice.id}/edit`}
+                            className="text-sm font-semibold text-blue-700 hover:text-blue-600"
+                          >
+                            Edit
+                          </Link>
+                          <Link
+                            href={`/api/invoices/${invoice.id}/pdf`}
+                            className="text-sm font-semibold text-cyan-700 hover:text-cyan-600"
+                          >
+                            PDF
+                          </Link>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  )
+                })
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   )

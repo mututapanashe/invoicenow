@@ -22,8 +22,8 @@ export default async function EditInvoicePage({ params, searchParams }: EditInvo
   if (!hasSupabaseEnv()) {
     return (
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold text-amber-50">Edit Invoice</h1>
-        <p className="rounded-lg border border-red-500/60 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Edit Invoice</h1>
+        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           Supabase is not configured.
         </p>
       </div>
@@ -56,10 +56,10 @@ export default async function EditInvoicePage({ params, searchParams }: EditInvo
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-3xl font-bold text-amber-50">Edit Invoice</h1>
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Edit Invoice</h1>
         <Link
           href={`/api/invoices/${id}/pdf`}
-          className="inline-flex rounded-lg border border-orange-300/50 bg-orange-500/10 px-4 py-2 text-sm font-semibold text-orange-200 hover:bg-orange-500/20"
+          className="inline-flex rounded-lg border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-100"
         >
           Download PDF
         </Link>

@@ -10,11 +10,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<ButtonVariant, string> = {
   default:
-    'bg-gradient-to-r from-amber-300 via-orange-300 to-orange-400 text-neutral-950 shadow-lg shadow-orange-900/25 hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60',
+    'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-sm shadow-blue-300/60 hover:from-blue-500 hover:to-cyan-400 disabled:cursor-not-allowed disabled:opacity-60',
   outline:
-    'border border-amber-300/45 bg-neutral-900/70 text-amber-100 hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60',
+    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60',
   ghost:
-    'bg-transparent text-amber-100 hover:bg-amber-400/10 hover:text-amber-50 disabled:cursor-not-allowed disabled:opacity-60',
+    'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-60',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -24,7 +24,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={cn(
-          'inline-flex h-10 items-center justify-center rounded-md px-4 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+          'inline-flex h-10 items-center justify-center rounded-lg px-4 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white',
           variantClasses[variant],
           className
         )}

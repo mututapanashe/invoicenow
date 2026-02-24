@@ -41,7 +41,7 @@ export default async function CreateInvoicePage({ searchParams }: CreateInvoiceP
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-amber-50">Create Invoice</h1>
+      <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Create Invoice</h1>
       <InvoiceForm
         mode="create"
         action={createInvoiceAction}
