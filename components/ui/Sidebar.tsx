@@ -24,13 +24,13 @@ export function Sidebar({ links, className }: SidebarProps) {
   return (
     <aside
       className={cn(
-        'w-full max-w-64 border-r border-slate-200 bg-slate-50/85 p-4',
+        'w-full max-w-64 border-r border-amber-200/90 bg-amber-50/60 p-4',
         className
       )}
     >
-      <div className="mb-6 rounded-xl border border-slate-200 bg-white px-3 py-3">
-        <p className="text-base font-semibold uppercase tracking-[0.18em] text-slate-900">Panatech</p>
-        <p className="text-xs text-slate-500">Invoice Suite</p>
+      <div className="mb-6 rounded-xl border border-amber-200 bg-white/90 px-3 py-3">
+        <p className="text-base font-semibold uppercase tracking-[0.18em] text-amber-900">Panatech</p>
+        <p className="text-xs text-amber-700">Invoice Suite</p>
       </div>
       <nav className="space-y-1.5">
         {links.map((link) => {
@@ -43,8 +43,8 @@ export function Sidebar({ links, className }: SidebarProps) {
               className={cn(
                 'block rounded-lg px-3 py-2 text-sm font-semibold transition',
                 active
-                  ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-sm shadow-blue-300/50'
-                  : 'text-slate-600 hover:bg-white hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 shadow-sm shadow-amber-500/30'
+                  : 'text-slate-700 hover:bg-white/90 hover:text-amber-900'
               )}
             >
               {link.label}

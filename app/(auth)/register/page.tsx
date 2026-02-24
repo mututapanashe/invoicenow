@@ -46,7 +46,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl">Create account</CardTitle>
-        <p className="text-sm text-slate-600">Start managing invoicing and cash flow in minutes.</p>
+        <p className="text-sm text-amber-800">Start managing invoicing and cash flow in minutes.</p>
       </CardHeader>
       <CardContent>
         <form action={signInWithGoogleAction} className="mb-4">
@@ -58,11 +58,11 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
         </form>
 
         <div className="mb-4 flex items-center gap-3">
-          <span className="h-px flex-1 bg-slate-200" />
-          <span className="text-xs font-medium uppercase tracking-wide text-slate-400">
+          <span className="h-px flex-1 bg-amber-200" />
+          <span className="text-xs font-medium uppercase tracking-wide text-amber-500">
             or register with email
           </span>
-          <span className="h-px flex-1 bg-slate-200" />
+          <span className="h-px flex-1 bg-amber-200" />
         </div>
 
         <form action={registerAction} className="space-y-4">
@@ -110,9 +110,9 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
           </Button>
         </form>
 
-        <p className="mt-4 text-sm text-slate-600">
+        <p className="mt-4 text-sm text-amber-900/80">
           Already have an account?{' '}
-          <Link href="/login" className="font-medium text-blue-700 hover:text-blue-600">
+          <Link href="/login" className="font-medium text-amber-800 hover:text-amber-700">
             Login
           </Link>
         </p>

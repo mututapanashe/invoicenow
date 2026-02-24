@@ -110,7 +110,7 @@ export default async function InvoicesPage({ searchParams }: InvoicesPageProps) 
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Invoices</h1>
         <Link
           href="/create-invoice"
-          className="inline-flex rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-300/60 transition hover:from-blue-500 hover:to-cyan-400"
+          className="inline-flex rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-4 py-2 text-sm font-semibold text-amber-950 shadow-sm shadow-amber-500/30 transition hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
         >
           Create invoice
         </Link>
@@ -127,24 +127,24 @@ export default async function InvoicesPage({ searchParams }: InvoicesPageProps) 
         </p>
       ) : null}
 
-      <div className="rounded-2xl border border-slate-200 bg-white/90 p-3 sm:p-4">
+      <div className="rounded-2xl border border-amber-200 bg-white/80 p-3 sm:p-4">
         <form className="grid gap-3 md:grid-cols-[1fr_200px_auto]">
           <label className="relative block">
             <Search
               size={16}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-amber-500"
             />
             <input
               name="q"
               defaultValue={params.q ?? ''}
               placeholder="Search by customer or email"
-              className="h-10 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/35"
+              className="h-10 w-full rounded-lg border border-amber-200 bg-white pl-9 pr-3 text-sm text-slate-900 placeholder:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/35"
             />
           </label>
           <select
             name="status"
             defaultValue={statusFilter}
-            className="h-10 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/35"
+            className="h-10 rounded-lg border border-amber-200 bg-white px-3 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/35"
           >
             {statusOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -154,7 +154,7 @@ export default async function InvoicesPage({ searchParams }: InvoicesPageProps) 
           </select>
           <button
             type="submit"
-            className="h-10 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 text-sm font-semibold text-white hover:from-blue-500 hover:to-cyan-400"
+            className="h-10 rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-4 text-sm font-semibold text-amber-950 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
           >
             Apply
           </button>

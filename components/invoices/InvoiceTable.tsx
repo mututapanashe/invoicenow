@@ -32,14 +32,17 @@ export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
     <div className="space-y-3">
       <div className="grid gap-3 md:hidden">
         {invoices.length === 0 ? (
-          <p className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-500">
+          <p className="rounded-xl border border-amber-200 bg-white/90 px-4 py-3 text-sm text-amber-800">
             No invoices yet.
           </p>
         ) : (
           invoices.map((invoice) => {
             const overdue = isOverdue(invoice)
             return (
-              <div key={invoice.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div
+                key={invoice.id}
+                className="rounded-xl border border-amber-200 bg-white/90 p-4 shadow-[0_14px_30px_-22px_rgba(161,98,7,0.55)]"
+              >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate font-semibold text-slate-900">{invoice.customerName}</p>
@@ -62,12 +65,15 @@ export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
                   </p>
                 </div>
                 <div className="mt-4 flex items-center gap-4">
-                  <Link href={`/invoices/${invoice.id}/edit`} className="text-sm font-semibold text-blue-700">
+                  <Link
+                    href={`/invoices/${invoice.id}/edit`}
+                    className="text-sm font-semibold text-amber-800"
+                  >
                     Edit
                   </Link>
                   <Link
                     href={`/api/invoices/${invoice.id}/pdf`}
-                    className="text-sm font-semibold text-cyan-700"
+                    className="text-sm font-semibold text-amber-700"
                   >
                     PDF
                   </Link>
@@ -78,7 +84,7 @@ export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
         )}
       </div>
 
-      <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm md:block">
+      <div className="hidden overflow-hidden rounded-xl border border-amber-200 bg-white/90 shadow-[0_14px_30px_-22px_rgba(161,98,7,0.55)] md:block">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
@@ -103,7 +109,7 @@ export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
                   const overdue = isOverdue(invoice)
                   return (
                     <TableRow key={invoice.id}>
-                      <TableCell className="font-medium text-slate-900">{invoice.customerName}</TableCell>
+                      <TableCell className="font-medium text-amber-950">{invoice.customerName}</TableCell>
                       <TableCell>{invoice.customerEmail}</TableCell>
                       <TableCell>{formatMoney(invoice.amount, currencyCode)}</TableCell>
                       <TableCell>{formatDate(invoice.dueDate)}</TableCell>
@@ -119,13 +125,13 @@ export function InvoiceTable({ invoices, currencyCode }: InvoiceTableProps) {
                         <div className="inline-flex items-center gap-3">
                           <Link
                             href={`/invoices/${invoice.id}/edit`}
-                            className="text-sm font-semibold text-blue-700 hover:text-blue-600"
+                            className="text-sm font-semibold text-amber-800 hover:text-amber-700"
                           >
                             Edit
                           </Link>
                           <Link
                             href={`/api/invoices/${invoice.id}/pdf`}
-                            className="text-sm font-semibold text-cyan-700 hover:text-cyan-600"
+                            className="text-sm font-semibold text-amber-700 hover:text-amber-600"
                           >
                             PDF
                           </Link>

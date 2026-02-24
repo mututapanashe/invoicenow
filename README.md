@@ -7,7 +7,7 @@ Panatech Invoice is a Next.js + Supabase invoicing app with:
 - Account settings persistence
 - Collection-focused dashboard analytics
 - Per-invoice PDF export
-- Modern light-mode UI (Poppins + mobile-first layouts)
+- Modern light-mode UI (Montserrat + mobile-first layouts)
 
 ## 1. Environment Setup
 

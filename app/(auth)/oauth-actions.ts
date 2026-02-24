@@ -7,6 +7,19 @@ import { createClient, hasSupabaseEnv } from '@/lib/supabase/server'
 
 const encodeMessage = (message: string) => encodeURIComponent(message)
 
+const getGoogleAuthErrorMessage = (errorMessage?: string) => {
+  const normalized = errorMessage?.toLowerCase() ?? ''
+
+  if (
+    normalized.includes('unsupported provider') ||
+    normalized.includes('provider is not enabled')
+  ) {
+    return 'Google sign-in is disabled. Enable Google under Supabase Authentication > Providers, then try again.'
+  }
+
+  return errorMessage ?? 'Unable to start Google sign-in.'
+}
+
 const sanitizePath = (pathname: string) =>
   pathname.startsWith('/') && !pathname.startsWith('//') ? pathname : '/dashboard'
 
@@ -58,7 +71,7 @@ export async function signInWithGoogleAction(formData: FormData) {
   })
 
   if (error || !data.url) {
-    redirect(`/login?error=${encodeMessage(error?.message ?? 'Unable to start Google sign-in.')}`)
+    redirect(`/login?error=${encodeMessage(getGoogleAuthErrorMessage(error?.message))}`)
   }
 
   redirect(data.url)

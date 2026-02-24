@@ -44,27 +44,27 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen px-4 pb-14 pt-6 sm:px-6 lg:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
-        <header className="rounded-2xl border border-slate-200/90 bg-white/85 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <header className="rounded-2xl border border-amber-200/90 bg-white/80 px-4 py-3 shadow-[0_18px_30px_-24px_rgba(161,98,7,0.6)] backdrop-blur sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-yellow-400 text-amber-950">
                 <Sparkles size={18} />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-900">Panatech Invoice</p>
-                <p className="text-xs text-slate-500">Modern finance operations</p>
+                <p className="text-sm font-semibold text-amber-950">Panatech Invoice</p>
+                <p className="text-xs text-amber-700">Modern finance operations</p>
               </div>
             </div>
             <nav className="flex items-center gap-2 sm:gap-3">
               <Link
                 href="/login"
-                className="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="inline-flex rounded-lg border border-amber-300 bg-white px-3 py-2 text-sm font-medium text-amber-900 hover:bg-amber-50"
               >
                 Sign in
               </Link>
               <Link
                 href="/register"
-                className="inline-flex rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-3 py-2 text-sm font-semibold text-white hover:from-blue-500 hover:to-cyan-400"
+                className="inline-flex rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-3 py-2 text-sm font-semibold text-amber-950 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
               >
                 Get started
               </Link>
@@ -73,9 +73,9 @@ export default async function HomePage() {
         </header>
 
         <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <Card className="overflow-hidden border-slate-200/90">
+          <Card className="overflow-hidden border-amber-200/90">
             <CardHeader className="pb-4">
-              <p className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+              <p className="inline-flex w-fit items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
                 <CheckCircle2 size={14} /> Trusted by fast-moving teams
               </p>
               <CardTitle className="max-w-2xl text-3xl leading-tight sm:text-4xl">
@@ -90,13 +90,13 @@ export default async function HomePage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={primaryHref}
-                  className="inline-flex rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:from-blue-500 hover:to-cyan-400"
+                  className="inline-flex rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-4 py-2 text-sm font-semibold text-amber-950 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
                 >
                   {primaryLabel}
                 </Link>
                 <Link
                   href="/login"
-                  className="inline-flex rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  className="inline-flex rounded-lg border border-amber-300 bg-white px-4 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-50"
                 >
                   Continue with account
                 </Link>
@@ -109,25 +109,25 @@ export default async function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200/90">
+          <Card className="border-amber-200/90">
             <CardHeader>
               <CardTitle className="text-xl">Live performance snapshot</CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <p className="text-xs uppercase tracking-wide text-slate-500">Avg. collection time</p>
+              <div className="rounded-xl border border-amber-200 bg-amber-50/65 p-3">
+                <p className="text-xs uppercase tracking-wide text-amber-700">Avg. collection time</p>
                 <p className="mt-1 text-xl font-semibold text-slate-900">8.4 days</p>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <p className="text-xs uppercase tracking-wide text-slate-500">Revenue recovery</p>
+              <div className="rounded-xl border border-amber-200 bg-amber-50/65 p-3">
+                <p className="text-xs uppercase tracking-wide text-amber-700">Revenue recovery</p>
                 <p className="mt-1 text-xl font-semibold text-slate-900">+18%</p>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <p className="text-xs uppercase tracking-wide text-slate-500">Invoice accuracy</p>
+              <div className="rounded-xl border border-amber-200 bg-amber-50/65 p-3">
+                <p className="text-xs uppercase tracking-wide text-amber-700">Invoice accuracy</p>
                 <p className="mt-1 text-xl font-semibold text-slate-900">99.2%</p>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <p className="text-xs uppercase tracking-wide text-slate-500">Automated workflows</p>
+              <div className="rounded-xl border border-amber-200 bg-amber-50/65 p-3">
+                <p className="text-xs uppercase tracking-wide text-amber-700">Automated workflows</p>
                 <p className="mt-1 text-xl font-semibold text-slate-900">12 rules</p>
               </div>
             </CardContent>
@@ -138,7 +138,7 @@ export default async function HomePage() {
           {featureCards.map((item) => (
             <Card key={item.title}>
               <CardHeader className="pb-3">
-                <div className="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <div className="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 text-amber-800">
                   <item.icon size={18} />
                 </div>
                 <CardTitle className="text-xl">{item.title}</CardTitle>

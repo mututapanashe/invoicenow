@@ -148,6 +148,33 @@ begin
 end;
 $$;
 
+-- Prevent legacy columns from blocking inserts on partially-migrated projects.
+do $$
+begin
+  if exists (
+    select 1
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'invoices'
+      and column_name = 'client_name'
+  ) then
+    execute 'update public.invoices set client_name = coalesce(nullif(trim(client_name), ''''), customer_name, ''Unknown Customer'')';
+    execute 'alter table public.invoices alter column client_name drop not null';
+  end if;
+
+  if exists (
+    select 1
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'invoices'
+      and column_name = 'client_email'
+  ) then
+    execute 'update public.invoices set client_email = coalesce(nullif(trim(client_email), ''''), customer_email, ''unknown@example.com'')';
+    execute 'alter table public.invoices alter column client_email drop not null';
+  end if;
+end;
+$$;
+
 alter table public.invoices drop constraint if exists invoices_status_check;
 
 update public.invoices

@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient, hasSupabaseEnv } from '@/lib/supabase/server'
-import { invoiceSchema } from '@/lib/validations/invoice'
+import { invoiceSchema, type InvoiceInput } from '@/lib/validations/invoice'
 
 const encodeMessage = (message: string) => encodeURIComponent(message)
 
@@ -14,6 +14,25 @@ const getInvoicePayload = (formData: FormData) => ({
   amount: String(formData.get('amount') ?? ''),
   dueDate: String(formData.get('dueDate') ?? ''),
   status: String(formData.get('status') ?? ''),
+})
+
+const isLegacyClientConstraintError = (message: string) => {
+  const normalized = message.toLowerCase()
+
+  return (
+    normalized.includes('null value in column "client_name"') ||
+    normalized.includes('null value in column "client_email"') ||
+    (normalized.includes('client_name') && normalized.includes('not-null')) ||
+    (normalized.includes('client_email') && normalized.includes('not-null'))
+  )
+}
+
+const getInvoiceColumns = (input: InvoiceInput) => ({
+  customer_name: input.customerName,
+  customer_email: input.customerEmail,
+  amount: input.amount,
+  due_date: input.dueDate,
+  status: input.status,
 })
 
 const ensureAuthenticatedUser = async () => {
@@ -45,14 +64,22 @@ export async function createInvoiceAction(formData: FormData) {
     redirect(`/create-invoice?error=${encodeMessage(auth.error ?? 'Authentication failed.')}`)
   }
 
-  const { error } = await auth.supabase.from('invoices').insert({
+  const invoiceColumns = getInvoiceColumns(parsed.data)
+  let { error } = await auth.supabase.from('invoices').insert({
     user_id: auth.user.id,
-    customer_name: parsed.data.customerName,
-    customer_email: parsed.data.customerEmail,
-    amount: parsed.data.amount,
-    due_date: parsed.data.dueDate,
-    status: parsed.data.status,
+    ...invoiceColumns,
   })
+
+  if (error && isLegacyClientConstraintError(error.message)) {
+    const legacyRetryPayload: Record<string, unknown> = {
+      user_id: auth.user.id,
+      ...invoiceColumns,
+      client_name: parsed.data.customerName,
+      client_email: parsed.data.customerEmail,
+    }
+    const retryResult = await auth.supabase.from('invoices').insert(legacyRetryPayload)
+    error = retryResult.error
+  }
 
   if (error) {
     redirect(`/create-invoice?error=${encodeMessage(error.message)}`)

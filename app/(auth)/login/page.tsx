@@ -51,7 +51,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl">Sign in</CardTitle>
-        <p className="text-sm text-slate-600">Access your billing workspace and analytics.</p>
+        <p className="text-sm text-amber-800">Access your billing workspace and analytics.</p>
       </CardHeader>
       <CardContent>
         <form action={signInWithGoogleAction} className="mb-4">
@@ -63,11 +63,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </form>
 
         <div className="mb-4 flex items-center gap-3">
-          <span className="h-px flex-1 bg-slate-200" />
-          <span className="text-xs font-medium uppercase tracking-wide text-slate-400">
+          <span className="h-px flex-1 bg-amber-200" />
+          <span className="text-xs font-medium uppercase tracking-wide text-amber-500">
             or sign in with email
           </span>
-          <span className="h-px flex-1 bg-slate-200" />
+          <span className="h-px flex-1 bg-amber-200" />
         </div>
 
         <form action={loginAction} className="space-y-4">
@@ -103,9 +103,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </Button>
         </form>
 
-        <p className="mt-4 text-sm text-slate-600">
+        <p className="mt-4 text-sm text-amber-900/80">
           No account yet?{' '}
-          <Link href="/register" className="font-medium text-blue-700 hover:text-blue-600">
+          <Link href="/register" className="font-medium text-amber-800 hover:text-amber-700">
             Register
           </Link>
         </p>

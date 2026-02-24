@@ -22,12 +22,12 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   if (!hasSupabaseEnv()) {
     return (
       <div className="mx-auto min-h-screen max-w-3xl px-6 py-10">
-        <h1 className="text-2xl font-semibold text-slate-900">Dashboard is unavailable</h1>
-        <p className="mt-3 text-slate-600">Authentication is currently unavailable.</p>
+        <h1 className="text-2xl font-semibold text-amber-950">Dashboard is unavailable</h1>
+        <p className="mt-3 text-amber-800">Authentication is currently unavailable.</p>
         <div className="mt-6">
           <Link
             href="/login"
-            className="inline-flex rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:from-blue-500 hover:to-cyan-400"
+            className="inline-flex rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-4 py-2 text-sm font-semibold text-amber-950 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
           >
             Go to login
           </Link>

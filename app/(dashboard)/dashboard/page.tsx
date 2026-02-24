@@ -92,7 +92,7 @@ export default async function DashboardPage() {
       label: 'Total invoices',
       value: String(totalInvoices),
       icon: CircleDollarSign,
-      accent: 'text-blue-600',
+      accent: 'text-amber-700',
     },
     {
       label: 'Outstanding balance',
@@ -110,7 +110,7 @@ export default async function DashboardPage() {
       label: 'Collection rate',
       value: `${collectionRate.toFixed(1)}%`,
       icon: AlertTriangle,
-      accent: 'text-sky-600',
+      accent: 'text-orange-600',
     },
   ]
 
@@ -120,7 +120,7 @@ export default async function DashboardPage() {
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Dashboard</h1>
         <Link
           href="/create-invoice"
-          className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-300/60 transition hover:from-blue-500 hover:to-cyan-400"
+          className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 px-4 py-2 text-sm font-semibold text-amber-950 shadow-sm shadow-amber-500/30 transition hover:from-amber-400 hover:via-yellow-300 hover:to-amber-300"
         >
           <Plus size={16} />
           New invoice
@@ -163,7 +163,7 @@ export default async function DashboardPage() {
                   return (
                     <div
                       key={invoice.id}
-                      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3"
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-200 bg-amber-50/60 px-4 py-3"
                     >
                       <div className="min-w-0">
                         <p className="truncate font-semibold text-slate-900">{invoice.customerName}</p>
@@ -223,7 +223,7 @@ export default async function DashboardPage() {
                   {dueSoonInvoices.map((invoice) => (
                     <li
                       key={invoice.id}
-                      className="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2"
+                      className="flex items-center justify-between rounded-lg border border-amber-200 bg-white/70 px-3 py-2"
                     >
                       <span className="text-sm font-medium text-slate-700">{invoice.customerName}</span>
                       <span className="text-xs text-slate-500">{formatDate(invoice.dueDate)}</span>

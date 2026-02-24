@@ -59,7 +59,7 @@ export default async function EditInvoicePage({ params, searchParams }: EditInvo
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Edit Invoice</h1>
         <Link
           href={`/api/invoices/${id}/pdf`}
-          className="inline-flex rounded-lg border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-100"
+          className="inline-flex rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800 hover:bg-amber-100"
         >
           Download PDF
         </Link>

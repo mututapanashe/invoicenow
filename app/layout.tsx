@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { Poppins, Space_Mono } from 'next/font/google'
+import { Montserrat, Space_Mono } from 'next/font/google'
 
 import './globals.css'
 
-const sansFont = Poppins({
-  variable: '--font-poppins',
+const sansFont = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
 })

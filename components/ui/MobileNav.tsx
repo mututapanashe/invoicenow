@@ -22,7 +22,7 @@ export function MobileNav({ links, className }: MobileNavProps) {
   const pathname = usePathname()
 
   return (
-    <nav className={cn('overflow-x-auto border-b border-slate-200 bg-white/85 px-4 py-2', className)}>
+    <nav className={cn('overflow-x-auto border-b border-amber-200/90 bg-amber-50/65 px-4 py-2', className)}>
       <div className="flex min-w-max items-center gap-2">
         {links.map((link) => {
           const active = isActivePath(pathname, link.href)
@@ -34,8 +34,8 @@ export function MobileNav({ links, className }: MobileNavProps) {
               className={cn(
                 'rounded-lg px-3 py-2 text-sm font-semibold transition',
                 active
-                  ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-sm shadow-blue-300/50'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 shadow-sm shadow-amber-500/30'
+                  : 'text-slate-700 hover:bg-white/90 hover:text-amber-900'
               )}
             >
               {link.label}
